@@ -40,16 +40,16 @@ public struct HTMLGlobalAttributes: HTMLTagAttributes {
 
 extension HTMLGlobalAttribute {
 
-    public static func `class`<Class: HTMLCLass>(_ class: Class) -> Self {
+    public static func `class`<Class: HTMLClass>(_ class: Class) -> Self {
         self.class(CollectionOfOne(`class`))
     }
 
-    public static func `class`<Class: HTMLCLass>(_ classes: Class...) -> Self {
+    public static func `class`<Class: HTMLClass>(_ classes: Class...) -> Self {
         self.class(classes)
     }
 
     public static func `class`<Classes: Sequence>(_ classes: Classes) -> Self
-        where Classes.Element: HTMLCLass
+        where Classes.Element: HTMLClass
     {
         .init("class", value: classes.lazy.map { $0.rawValue }.joined(separator: " "))
     }

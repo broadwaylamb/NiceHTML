@@ -1,9 +1,14 @@
 public final class HTMLStringStream: HTMLOutputStream {
 
-  public private(set) var result: String
+  @usableFromInline
+  internal var _result: String
 
+  @inlinable
+  public var result: String { _result }
+
+  @inlinable
   public init() {
-    result = ""
+    _result = ""
   }
 
   public typealias Element = Character
@@ -12,15 +17,15 @@ public final class HTMLStringStream: HTMLOutputStream {
 
   public static let space: Character = " "
 
-  public static var newline: Character = "\n"
+  public static let newline: Character = "\n"
 
-  public static var tab: Character = "\t"
+  public static let tab: Character = "\t"
 
   public static let doubleQuote: Character = "\""
 
-  public static var equal: Character = "="
+  public static let equal: Character = "="
 
-  public static var slash: Character = "/"
+  public static let slash: Character = "/"
 
   public static let lessThan: Character = "<"
 
@@ -44,19 +49,22 @@ public final class HTMLStringStream: HTMLOutputStream {
 
   public static let openDoctype: Substring = "<!DOCTYPE "
 
+  @inlinable
   public static func <<< (lhs: HTMLStringStream, rhs: Character) -> HTMLStringStream {
-    lhs.result.append(rhs)
+    lhs._result.append(rhs)
     return lhs
   }
 
+  @inlinable
   public static func <<< (lhs: HTMLStringStream, rhs: Substring) -> HTMLStringStream {
-    lhs.result.append(contentsOf: rhs)
+    lhs._result.append(contentsOf: rhs)
     return lhs
   }
 
+  @inlinable
   public static func <<< <S: StringProtocol>(lhs: HTMLStringStream,
                                              rhs: S) -> HTMLStringStream {
-    lhs.result.append(contentsOf: rhs)
+    lhs._result.append(contentsOf: rhs)
     return lhs
   }
 }

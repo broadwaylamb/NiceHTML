@@ -1,4 +1,4 @@
-public protocol HTMLCLass: RawRepresentable where RawValue == String {}
+public protocol HTMLClass: RawRepresentable where RawValue == String {}
 
 public protocol HTMLID: RawRepresentable where RawValue == String {}
 

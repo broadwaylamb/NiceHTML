@@ -5,7 +5,7 @@ import NiceHTMLStream
 final class NiceHTMLTests: XCTestCase {
   func testExample() {
     let doc = HTMLDocument(
-      doctype: "html>wow!",
+      doctype: "html<>wow!",
       node: .fragment([
         .comment("Hello to earthlings! <a> -->"),
         .element(name: "html",
@@ -35,5 +35,10 @@ final class NiceHTMLTests: XCTestCase {
                  ]))
       ])
     )
+
+    let stream = HTMLByteStream()
+    try! stream <<< doc.render(renderingStyle: .prettyPrintedWithSpaces(intialIndentation: 0, indent: 4))
+
+    print(String(decoding: stream.result, as: UTF8.self))
   }
 }
