@@ -11,7 +11,7 @@ public struct HTML: HTMLElement {
       }
     }
 
-    public var count: Int { xmlns == nil ? 0 : 1 }
+    public var count: Int { xmlns.count }
   }
 
   public static let name = "html"

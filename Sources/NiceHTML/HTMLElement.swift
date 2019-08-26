@@ -15,6 +15,7 @@ extension HTMLElement {
   public func toNode() -> HTMLNode {
     var renderedAttrs = HTMLNode.RenderedAttributes()
     renderedAttrs.reserveCapacity(globalAttributes.count + attributes.count)
+    globalAttributes.render(into: &renderedAttrs)
     attributes.render(into: &renderedAttrs)
     return .element(name: Self.name, attrs: renderedAttrs, child: children)
   }
